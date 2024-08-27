@@ -6,9 +6,8 @@ from torch.utils.data import Dataset
 from torch.nn.utils.rnn import pad_sequence
 import torch
 
-device = "cuda"
 
-def load_models(epoch):
+def load_models(device, epoch):
     print("loading models")
     out_dir = "./saved_models/{}".format(epoch)
     encoder = torch.load("{}/E".format(out_dir), map_location=torch.device(device))
@@ -31,7 +30,7 @@ def decode_to_selfie(selfies_alphabet, decoded):
 
 
 class SelfiesDataset(Dataset):
-    def __init__(self, data_list):
+    def __init__(self, device, data_list):
         self.data = [torch.tensor(item).to(device) for item in data_list]
 
     def __len__(self):

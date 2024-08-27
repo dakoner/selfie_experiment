@@ -76,25 +76,3 @@ trainer.fit(vae, data_loader)
 save_models(vae.encoder, vae.decoder, 100)
 
 
-
-# # Example decoding
-# idx = 0
-
-# input_tensor = torch.nn.functional.pad(
-#     torch.Tensor(selfies_ints[idx]).unsqueeze(0).long(),
-#     pad=(0, largest_selfies_len - len(selfies_ints[idx])),
-#     value=selfies_alphabet.index("[nop]"),
-# )
-# latent, *_ = vae.encoder(input_tensor)
-
-# # Since we don't a priori know the length, just use something longer than the training data
-# decoded, _ = vae.decoder(latent.repeat(1, largest_selfies_len, 1))
-# # back to indices
-# print(selfies_list[idx])
-# print(selfies_ints[idx])
-# print(decoded.argmax(-1))
-
-# print(vae.accuracy(input_tensor, decoded.argmax(-1)))
-
-# print(decode_to_selfie(selfies_alphabet, decoded))
-

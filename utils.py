@@ -9,7 +9,8 @@ import torch
 
 def load_models(dir_, device, epoch):
     print("loading models")
-    out_dir = "./{dir}/{}".format(dir_, epoch)
+    print("a")
+    out_dir = "./{}/{}".format(dir_, epoch)
     encoder = torch.load("{}/E".format(out_dir), map_location=torch.device(device))
     encoder.eval()
     decoder = torch.load("{}/D".format(out_dir), map_location=torch.device(device))
